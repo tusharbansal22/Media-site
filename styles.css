@@ -1,0 +1,23 @@
+body{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+navbar{
+  background-color: rgba(143, 9, 143,0.7);
+  display: block;
+  width: 100vw;
+
+}
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+}
+.main-container > .content{
+  width:70vw;
+}
+.main-container > .post-list{
+  width:30vw;
+}
