@@ -11,13 +11,17 @@
 {% include header.html %}
 
 <div class="main-container">
-  <div class="content">Hi</div>
+  <div class="content">
+    {% include carousel.html height='20'  unit='%' duration="7" number="1" %}
+  </div>
   <div class="post-list">
-    {% for post in posts %}
-    <a href="/{{post}}"></a>
+    {% for post in site.posts %}
+    <a href="{{ post.url }}"> {{post.title}} </a>
     {% endfor %}
   </div>
 </div>
+
+
 
 {% include footer.html %}
 

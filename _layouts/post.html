@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../styles.css">
   <title>Document</title>
 </head>
 <body>
-  
+{% include header.html %}
+  <div class="post-main">
+  <h1 class="post-title">{{page.title}}</h1>
+  <p>{{page.text}}</p>
+  <img src="{{page.image}}" class="post-image" alt="Image" />
+</div>
+{% include footer.html %}
 </body>
 </html>

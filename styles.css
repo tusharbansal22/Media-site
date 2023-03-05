@@ -16,8 +16,23 @@ navbar{
   width: 100vw;
 }
 .main-container > .content{
-  width:70vw;
+  width:80vw;
 }
 .main-container > .post-list{
+  width:20vw;
+}
+
+.post-image{
   width:30vw;
 }
+
+.post-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 4vw;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+}
+
