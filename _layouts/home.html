@@ -9,14 +9,29 @@
 </head>
 <body>
 {% include header.html %}
-
+<div class="home-dropdown-row" >
+  <select name="tagval">
+    <option value="no-filter"> Select Lab </option>
+    {% for tag in site.tags %}
+    {%if tag[0]!='focus' %}
+    <option value="{{tag[0]}}">{{tag[0]}}</option>
+    {%endif %}
+    {% endfor %}
+  </select>
+  </div>
 <div class="main-container">
+  
   <div class="content">
     {% include carousel.html height='20'  unit='%' duration="7" number="1" %}
   </div>
   <div class="post-list">
     {% for post in site.posts %}
+    {%if tagval == null%}
     <a href="{{ post.url }}"> {{post.title}} </a>
+    {%endif%}
+    {% for posts in tagval[1]%}
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    {% endfor %}
     {% endfor %}
   </div>
 </div>
