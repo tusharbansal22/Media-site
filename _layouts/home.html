@@ -13,6 +13,7 @@
 {% include header.html %}
 <div class="home-dropdown-row" >
   <button onclick="randomPost()">Random Post</button>
+  <div>
   <label for="tag-select">Filter by Lab:</label>
 <select id="tag-select">
   <option value="">All tags</option>
@@ -22,6 +23,7 @@
     {% endif %}
   {% endfor %}
 </select>
+</div>
   </div>
 <div class="main-container">
   
@@ -32,13 +34,13 @@
         {% for post in site.tags.focus %}
           <div class="focus-rousel-item">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p>{{ post.excerpt }}</p>
+            <p>{{ post.excerpt | truncate: 600}}  <a href="{{ post.url }}">Read More</a></p>
           </div>
         {% endfor %}
       </div>
       <div class="focus-rousel-controls">
-        <button class="focus-rousel-prev">></button>
-        <button class="focus-rousel-next"><</button>
+        <button class="focus-rousel-prev"><</button>
+        <button class="focus-rousel-next">></button>
       </div>
     </div>
     {% include carousel.html height='20'  unit='%' duration="7" number="1" %}
