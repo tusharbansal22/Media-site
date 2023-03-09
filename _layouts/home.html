@@ -12,6 +12,7 @@
 <body>
 {% include header.html %}
 <div class="home-dropdown-row" >
+  <button onclick="randomPost()">Random Post</button>
   <label for="tag-select">Filter by Lab:</label>
 <select id="tag-select">
   <option value="">All tags</option>
@@ -25,12 +26,27 @@
 <div class="main-container">
   
   <div class="content">
+    <div class="focus-rousel-container">
+      <h2>Focus Posts</h2>
+      <div class="focus-rousel">
+        {% for post in site.tags.focus %}
+          <div class="focus-rousel-item">
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="focus-rousel-controls">
+        <button class="focus-rousel-prev">></button>
+        <button class="focus-rousel-next"><</button>
+      </div>
+    </div>
     {% include carousel.html height='20'  unit='%' duration="7" number="1" %}
   </div>
   <div id="post-list">
   {% for post in site.posts %}
     <div class="post {% for tag in post.tags %}{{ tag}} {% endfor %}">
-      <h5><a href="{{ post.url }}">{{ post.title }}</a></h5>
+      <h5><a href="{{ post.url }}" class="post-link">{{ post.title }}</a></h5>
       <!-- <p>{{ post.excerpt }}</p> -->
     </div>
   {% endfor %}
@@ -69,5 +85,39 @@
     // Add a class to the post list to indicate that it is filtered
     postList.classList.add("filtered");
   });
+
+  var focusRousel = document.querySelector(".focus-rousel");
+  var prevButton = document.querySelector(".focus-rousel-prev");
+  var nextButton = document.querySelector(".focus-rousel-next");
+  var currentIndex = 0;
+  var focusItems = document.querySelectorAll(".focus-rousel-item");
+
+  // Hide all items except the first one
+  for (var i = 1; i < focusItems.length; i++) {
+    focusItems[i].style.display = "none";
+  }
+
+  // Add click listeners to the arrow buttons
+  prevButton.addEventListener("click", function() {
+    if (currentIndex > 0) {
+      focusItems[currentIndex].style.display = "none";
+      currentIndex--;
+      focusItems[currentIndex].style.display = "block";
+    }
+  });
+
+  nextButton.addEventListener("click", function() {
+    if (currentIndex < focusItems.length - 1) {
+      focusItems[currentIndex].style.display = "none";
+      currentIndex++;
+      focusItems[currentIndex].style.display = "block";
+    }
+  });
+  function randomPost() {
+  var posts = document.querySelectorAll('.post-link'); // get all post links
+  var index = Math.floor(Math.random() * posts.length); // get a random index
+  var url = posts[index].getAttribute('href'); // get the URL of the random post
+  window.location.href = url; // redirect to the random post
+}
 </script>
 </html>
